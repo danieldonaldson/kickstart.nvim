@@ -25,6 +25,7 @@ return {
                 client.config.settings.python.analysis = client.config.settings.python.analysis or {}
                 client.config.settings.python.analysis.extraPaths = {
                   current_dir .. '/src/siyavula.models',
+                  current_dir .. '/venv/lib/python3.8/site-packages',
                 }
                 vim.cmd('LspRestart ' .. client.id)
                 break
