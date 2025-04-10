@@ -6,8 +6,8 @@ return {
     -- Add session group to which-key
     local ok, wk = pcall(require, 'which-key')
     if ok then
-      wk.register {
-        ['<leader>S'] = { name = '[S]ession', _ = 'which_key_ignore' },
+      wk.add {
+        { '<leader>S', name = '[S]ession' },
       }
     end
   end,
