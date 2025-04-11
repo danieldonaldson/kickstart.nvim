@@ -33,26 +33,6 @@ return {
             end
           end, 1000)
 
-          -- Setup Telescope commands for this project
-          local telescope_ok, telescope = pcall(require, 'telescope.builtin')
-          if telescope_ok then
-            -- Create project-specific commands and mappings
-            vim.api.nvim_create_user_command('ProjectFind', function()
-              telescope.find_files {
-                find_command = { 'rg', '--files', '--no-ignore', '--hidden', '--glob', '!**/.git/*' },
-              }
-            end, {})
-
-            vim.api.nvim_create_user_command('ProjectGrep', function()
-              telescope.live_grep {
-                additional_args = { '--no-ignore' },
-              }
-            end, {})
-
-            vim.keymap.set('n', '<leader>sif', ':ProjectFind<CR>', { desc = 'Find in Project (with ignored)' })
-            vim.keymap.set('n', '<leader>sig', ':ProjectGrep<CR>', { desc = 'Grep in Project (with ignored)' })
-          end
-
           print 'Loaded project-specific configuration'
         end
       end,

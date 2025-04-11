@@ -475,6 +475,18 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sn', function()
         enhanced_telescope.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      vim.keymap.set('n', '<leader>sif', function()
+        enhanced_telescope.find_files {
+          find_command = { 'rg', '--files', '--no-ignore', '--hidden', '--glob', '!**/.git/*' },
+        }
+      end, { desc = 'Find in Project (with ignored)' })
+
+      vim.keymap.set('n', '<leader>sig', function()
+        enhanced_telescope.live_grep {
+          additional_args = { '--no-ignore' },
+        }
+      end, { desc = 'Grep in Project (with ignored)' })
     end,
   },
 
