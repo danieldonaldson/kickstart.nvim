@@ -61,22 +61,20 @@ return {
       },
     }
 
-    -- Add python-specific mappings under <leader>p namespace
+    -- Add python-specific mappings under <leader>p namespace using the new format
     local ok, wk = pcall(require, 'which-key')
     if ok then
-      wk.register({
-        p = {
-          name = '[P]ython',
-          y = {
-            name = '[Y]ank',
-            f = { 'yaf', 'Yank function', mode = 'n' },
-            c = { 'yac', 'Yank class', mode = 'n' },
-            m = { 'yam', 'Yank method call', mode = 'n' },
-          },
-          n = { desc = 'Swap with next parameter' },
-          p = { desc = 'Swap with previous parameter' },
-        },
-      }, { prefix = '<leader>' })
+      wk.add {
+        -- Define the mappings directly using the desired key sequence
+        { '<leader>p', group = '[P]ython' }, -- Main group definition
+        { '<leader>pn', '<leader>pn', desc = 'Swap with next parameter' }, -- Sequence, Mapping, Description
+        { '<leader>pp', '<leader>pp', desc = 'Swap with previous parameter' }, -- Sequence, Mapping, Description
+
+        { '<leader>py', group = '[Y]ank' }, -- Yank subgroup definition
+        { '<leader>pyc', 'yac', desc = 'Yank class' }, -- Sequence, Mapping, Description (assuming 'yac' is defined)
+        { '<leader>pyf', 'yaf', desc = 'Yank function' }, -- Sequence, Mapping, Description (assuming 'yaf' is defined)
+        { '<leader>pym', 'yam', desc = 'Yank method call' }, -- Sequence, Mapping, Description (assuming 'yam' is defined)
+      }
     end
 
     -- Ensure Python is in the ensured languages for treesitter
