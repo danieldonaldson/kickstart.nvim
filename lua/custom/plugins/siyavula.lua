@@ -6,6 +6,22 @@ return {
     -- Define the specific project path
     local specific_project_path = '/home/danie/Siyavula/siyavula.portal'
 
+    local function run_nosetests()
+      local filepath = vim.fn.expand '%:p'
+      local cmd = string.format('source %s/venv/bin/activate && nosetests -v %s', specific_project_path, filepath)
+
+      -- Create a terminal window
+      vim.cmd 'botright 20split'
+      vim.cmd 'terminal'
+
+      -- Send the command to the terminal
+      local bufnr = vim.api.nvim_get_current_buf()
+      vim.api.nvim_chan_send(vim.b[bufnr].terminal_job_id, cmd .. '\n')
+
+      -- Start in insert mode
+      vim.cmd 'startinsert'
+    end
+
     vim.api.nvim_create_augroup('ProjectSpecificConfig', { clear = true })
     vim.api.nvim_create_autocmd('DirChanged', {
       group = 'ProjectSpecificConfig',
@@ -37,6 +53,20 @@ return {
         end
       end,
     })
+
+    -- Add project-specific keymaps
+    vim.keymap.set('n', '<leader>tn', run_nosetests, {
+      buffer = 0,
+      desc = 'Run nosetests on current file',
+    })
+
+    -- Configure which-key if available
+    local wk_ok, wk = pcall(require, 'which-key')
+    if wk_ok then
+      wk.add {
+        { '<leader>tn', 'Run nosetests on current file' },
+      }
+    end
 
     -- Trigger the autocommand when Neovim starts
     vim.defer_fn(function()
