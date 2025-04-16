@@ -28,39 +28,39 @@ return {
         :find()
     end
 
-    vim.keymap.set('n', '<leader>he', function()
+    vim.keymap.set('n', '<leader><tab>e', function()
       toggle_telescope(harpoon:list())
     end, { desc = 'Open harpoon window' })
 
-    vim.keymap.set('n', '<leader>ha', function()
+    vim.keymap.set('n', '<leader><tab>a', function()
       harpoon:list():add()
     end)
 
-    vim.keymap.set('n', '<leader>h1', function()
+    vim.keymap.set('n', '<leader><tab>1', function()
       harpoon:list():select(1)
     end)
-    vim.keymap.set('n', '<leader>h2', function()
+    vim.keymap.set('n', '<leader><tab>2', function()
       harpoon:list():select(2)
     end)
-    vim.keymap.set('n', '<leader>h3', function()
+    vim.keymap.set('n', '<leader><tab>3', function()
       harpoon:list():select(3)
     end)
-    vim.keymap.set('n', '<leader>h4', function()
+    vim.keymap.set('n', '<leader><tab>4', function()
       harpoon:list():select(4)
     end)
 
     -- Toggle previous & next buffers stored within Harpoon list
-    vim.keymap.set('n', '<leader>hp', function()
+    vim.keymap.set('n', '<leader><tab>p', function()
       harpoon:list():prev()
     end)
-    vim.keymap.set('n', '<leader>hn', function()
+    vim.keymap.set('n', '<leader><tab>n', function()
       harpoon:list():next()
     end)
 
     local ok, wk = pcall(require, 'which-key')
     if ok then
       wk.add {
-        { '<leader>h', name = '[H]arpoon' },
+        { '<leader><tab>', name = 'Harpoon' },
       }
     end
   end,
