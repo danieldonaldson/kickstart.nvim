@@ -7,6 +7,7 @@ return {
     },
     build = 'make tiktoken', -- Only on MacOS or Linux
     opts = {
+      model = 'gpt-4.1',
       -- See Configuration section for options
     },
     keys = {
