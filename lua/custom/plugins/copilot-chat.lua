@@ -10,7 +10,7 @@ return {
       -- See Configuration section for options
     },
     keys = {
-      { '<leader>co', '<cmd>CopilotChat<cr>', desc = 'Open Copilot Chat' },
+      { '<leader>cc', '<cmd>CopilotChat<cr>', desc = 'Open Copilot Chat' },
     },
   },
 }
