@@ -936,8 +936,12 @@ require('lazy').setup({
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev', 'copilot' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev', 'copilot', 'buffer' },
+        per_filetype = {
+          sql = { 'snippets', 'dadbod', 'buffer' },
+        },
         providers = {
+          dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
           -- specific options for copilot
           copilot = {
